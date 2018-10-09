@@ -1,0 +1,90 @@
+#include <iostream>
+#include <stdlib.h>
+#include <bits/stdc++.h>
+
+using namespace std;
+void mergeSort(int[], int);
+void mergeSort2(int [], int, int);
+void mergeB(int[], int, int, int);
+void outPut(int [],int);
+int main () {
+    int length;
+    signed int element;
+    cout << "This Program Will Take An Array You Create, And Sort It With MergeSorting\n";
+    cout << "Enter the Length of your Array: ";
+    cin >> length;
+    int initial[length] = {0};
+    for (int i = 0; i < length; i++)
+    {
+        cout << "Enter Element #" << i << "= ";
+        cin >> element;
+        initial[i] = element;
+    }
+    system ("CLS");
+    cout << "Your Array Is: ";
+    outPut(initial, length);
+    mergeSort(initial,length);
+    cout << "\n\nYour Sorted Array Is: ";
+    outPut(initial, length);
+return 0;
+}
+void outPut(int Array[],int lengthOfArray){
+    for (int i = 0; i < lengthOfArray; i++)
+    {
+        cout << Array[i] <<" ";
+    }
+}
+void mergeSort(int a[], int arraySize)
+{
+    int low = 0;
+    int high = arraySize -1;
+    mergeSort2(a, low, high);
+}
+void mergeSort2 (int array2[ ], int low, int high){
+	if (low < high) {
+		int mid;
+		mid = (high + low) / 2;
+		mergeSort2(array2, low, mid);
+		mergeSort2(array2, mid +1, high);
+
+		mergeB(array2, low, high, mid);
+}
+}
+void mergeB(int array3[], int lo, int hi, int mid){
+int lowB = lo; //lo = low amount from the previous last recursion in mergeSort2
+int midB = mid + 1; // midB = the second half of the initial array
+int k = lo;
+int c[20];
+while (lowB <= mid && midB <= hi) /* while low element does not exceed the middle element
+and while the second half of the array does not exceed the end of the array*/
+    {
+        if (array3[lowB] < array3[midB]) // if the 0th element is less than the middle element + 1 then...
+            {
+                c[k] = array3[lowB]; // the first 0th element of array c equals the 0th element of the passed array
+                k++;
+                lowB++;
+            }
+        else if (array3[lowB] > array3[midB])
+            {
+                c[k] = array3[midB];
+                k++;
+                midB++;
+            }
+    }
+while (lowB <= mid)
+    {
+        c[k] = array3[lowB];
+        k++;
+        lowB++;
+    }
+while (midB <= hi)
+    {
+        c[k] = array3[midB];
+        k++;
+        midB++;
+    }
+for (lowB = lo; lowB < k; lowB++)
+    {
+        array3[lowB] = c[lowB];
+    }
+}
