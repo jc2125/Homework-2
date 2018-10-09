@@ -1,0 +1,96 @@
+#include <iostream>
+
+using namespace std;
+void Problem1Sort(int[], int);
+
+int main (){
+    int sizeEntered;
+    int values;
+    cout << "This Program will Sort your Array by the number of digits in Each Input.\n";
+    cout << "Enter the Size of your Array: ";
+    cin >> sizeEntered;
+    int entered[sizeEntered] = {0};
+    int g = 0;
+    cout << "Enter the values of the elements in your array:\n";
+    for (int i = 0; i < sizeEntered; i++)
+    {
+        cout << "Element #" << g << "= ";
+        cin >> values;
+        entered[i] = values;
+        g++;
+    }
+    cout << "\nYour array = ";
+    for (int j = 0; j < sizeEntered; j++)
+    {
+       cout << entered[j] << " ";
+    }
+Problem1Sort(entered, sizeEntered);
+return 0;
+}
+
+void Problem1Sort(int a[] , int arraySize){
+    int hold;
+    int decimal;
+    cout << "\n\nSort By the 1's, 10's, 100's, 1000's or 10000's place value?: ";
+    cin >> decimal;
+    if (decimal == 1)
+    {
+        for (int k = 0; k < arraySize - 1; k++)
+        for (int f = 0; f < arraySize - k - 1; f++)
+                if (a[f]%10 > a[f+1]%10)
+                {
+                hold = a[f];
+                a[f] = a[f+1];
+                a[f+1] = hold;
+                }
+    }
+    else if (decimal == 10)
+    {
+        for (int k = 0; k < arraySize - 1; k++)
+        for (int f = 0; f < arraySize - k - 1; f++)
+                if (a[f]%100 > a[f+1]%100)
+                {
+                hold = a[f];
+                a[f] = a[f+1];
+                a[f+1] = hold;
+                }
+    }
+    else if (decimal == 100)
+    {
+        for (int k = 0; k < arraySize - 1; k++)
+        for (int f = 0; f < arraySize - k - 1; f++)
+                if (a[f]%1000 > a[f+1]%1000)
+                {
+                hold = a[f];
+                a[f] = a[f+1];
+                a[f+1] = hold;
+                }
+    }
+    else if (decimal == 1000)
+    {
+        for (int k = 0; k < arraySize - 1; k++)
+        for (int f = 0; f < arraySize - k - 1; f++)
+                if (a[f]%10000 > a[f+1]%10000)
+                {
+                hold = a[f];
+                a[f] = a[f+1];
+                a[f+1] = hold;
+                }
+    }
+    else if (decimal == 10000)
+    {
+        for (int k = 0; k < arraySize - 1; k++)
+        for (int f = 0; f < arraySize - k - 1; f++)
+                if (a[f]%100000 > a[f+1]%100000)
+                {
+                hold = a[f];
+                a[f] = a[f+1];
+                a[f+1] = hold;
+                }
+    }
+    cout << "\nYour Array Sorted by " << decimal << "'s Place Value :\n";
+    for (int q = 0; q < arraySize; q++)
+    {
+        cout << a[q] << " ";
+    }
+}
