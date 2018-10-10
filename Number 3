@@ -1,0 +1,93 @@
+#include<iostream>
+
+using namespace std;
+
+struct node
+{
+	int data;
+	node *next;
+};
+class LinkedList
+{
+		private:
+		node *head;
+		node *last;
+		public:
+		LinkedList()
+		{
+			head=NULL;
+			last=NULL;
+		}
+		void createNode(int value)
+		{
+			node *temp = new node;
+			temp->data=value;
+			temp->next=NULL;
+			if(head==NULL)
+			{
+				head=temp;
+				last=temp;
+				temp=NULL;
+			}
+			else
+			{
+				last->next=temp;
+				last=temp;
+			}
+		}
+		void printList()
+		{
+			node *temp=new node;
+			temp=head;
+			while(temp!=NULL)
+			{
+				cout<<temp->data<<",";
+				temp=temp->next;
+			}
+		}
+		void add(int a)
+		{
+			node *temp=new node;
+			temp->data=a;
+			temp->next=head;
+			head=temp;
+		}
+
+};
+int main()
+{
+    int nodeAmount;
+    signed int value;
+    int j = 1;
+    char con;
+	LinkedList obj;
+	cout << "Enter How Many Nodes You'd Wish To Begin With: ";
+	cin >> nodeAmount;
+	for (int i = 0; i < nodeAmount;i++)
+    {
+        cout << "Value For Node # " << j << " = ";
+        cin >> value;
+        obj.createNode(value);
+        j++;
+    }
+    cout << "\nAdd Number To Linked List? (y or n): ";
+    cin >> con;
+    while (con != 'n')
+    {
+        cout << "\nValue for Node # " << j << " That Your Are Adding: ";
+        cin >> value;
+        obj.add(value);
+        j++;
+        cout << "Add Another? (y or n [hit d to display current list]): ";
+        cin >> con;
+        if (con == 'd')
+        {
+            obj.printList();
+            cout << "\nAdd Another? (y or n): ";
+            cin >> con;
+        }
+    }
+    cout << "\nFinal Node List: \n";
+	obj.printList();
+	return 0;
+}
